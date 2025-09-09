@@ -9,7 +9,12 @@ services:
     command: ['mariadbd','--character-set-server=utf8mb4']
     volumes:
     - databasevolume:/var/lib/mysql
+    ports:
+    - 3306:3306
     environment:
+      MYSQL_USER: openemr
+      MYSQL_PASSWORD: openemr
+      MYSQL_DATABASE: openemr
       MYSQL_ROOT_PASSWORD: root
     healthcheck:
       test:
@@ -34,6 +39,7 @@ services:
     - sitevolume:/var/www/localhost/htdocs/openemr/sites
     environment:
       MYSQL_HOST: mysql
+      MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASS: root
       MYSQL_USER: openemr
       MYSQL_PASS: openemr
